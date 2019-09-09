@@ -1,39 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import * as CoreUI from '@material-ui/core';
 import * as CoreIcon from '@material-ui/icons';
-import STATUS from '../../constants/constanst';
+import { bindActionCreators } from 'redux';
+import { STATUS } from '../../constants/constanst';
 import styles from './Taskboard.styles';
 import TaskList from '../../components/TaskList/TaskList';
 import TaskForm from '../../components/TaskForm/TaskForm';
-
-const listTask = [
-  {
-    id: 1,
-    title: 'Implement Task UI',
-    description:
-      'Any other props supplied will be provided to the root element (native element).',
-    status: 0,
-  },
-  {
-    id: 2,
-    title: 'Maping API UI',
-    description:
-      'Any other props supplied will be provided to the root element (native element).',
-    status: 1,
-  },
-  {
-    id: 3,
-    title: 'Sefl-test UI',
-    description:
-      'The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.',
-    status: 2,
-  },
-];
+import * as taskActions from '../../actions/taskAction';
 
 function Taskboard(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
+  const { listTask } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -46,6 +26,12 @@ function Taskboard(props) {
   const renderForm = () => {
     return <TaskForm open={open} handleClose={handleClose} />;
   };
+
+  useEffect(() => {
+    const { taskActionCreator } = props;
+    const { fetchListTaskRequest } = taskActionCreator;
+    fetchListTaskRequest();
+  });
 
   return (
     <div className={classes.root}>
@@ -91,8 +77,29 @@ function Taskboard(props) {
   );
 }
 
-// Taskboard.propTypes = {
-//   classes: PropTypes.object,
-// };
+Taskboard.propTypes = {
+  classes: PropTypes.object,
+  taskActionCreator: PropTypes.shape({
+    fechListTask: PropTypes.func,
+  }),
+  listTask: PropTypes.array,
+};
 
-export default CoreUI.withStyles(styles)(Taskboard);
+const mapStateToProps = state => {
+  return {
+    listTask: state.task.listTask,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    taskActionCreator: bindActionCreators(taskActions, dispatch),
+  };
+};
+
+export default CoreUI.withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Taskboard),
+);

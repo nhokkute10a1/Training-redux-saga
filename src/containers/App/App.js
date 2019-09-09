@@ -1,14 +1,20 @@
 import React from 'react';
 import * as CoreUI from '@material-ui/styles';
+import { Provider } from 'react-redux';
 import styles from './App.styles';
 import Taskboard from '../Taskboard/Taskboard';
 import theme from '../../common/Theme/theme.styles';
+import configureStore from '../../redux/configureStore';
+
+const store = configureStore();
 
 function App(props) {
   return (
-    <CoreUI.ThemeProvider theme={theme}>
-      <Taskboard />
-    </CoreUI.ThemeProvider>
+    <Provider store={store}>
+      <CoreUI.ThemeProvider theme={theme}>
+        <Taskboard />
+      </CoreUI.ThemeProvider>
+    </Provider>
   );
 }
 

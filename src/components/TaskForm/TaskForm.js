@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as CoreUI from '@material-ui/core';
 import styles from './TaskForm.styles';
 
 function TaskForm(props) {
   const { classes, open, handleClose } = props;
+  const [fullWidth] = useState(true);
 
   return (
     <CoreUI.Dialog
       open={open}
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
-      fullWidth="true"
+      fullWidth={fullWidth}
     >
       <CoreUI.DialogTitle id="form-dialog-title">
         Add New Task
@@ -24,7 +25,7 @@ function TaskForm(props) {
           className={classes.textField}
           margin="normal"
           variant="filled"
-          fullWidth="true"
+          fullWidth={fullWidth}
         />
       </CoreUI.DialogContent>
       <CoreUI.DialogActions>

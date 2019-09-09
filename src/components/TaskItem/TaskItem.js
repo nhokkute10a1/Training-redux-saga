@@ -5,8 +5,8 @@ import styles from './TaskItem.styles';
 function TaskItem(props) {
   const { classes, task, status } = props;
   return (
-    <CoreUI.Card className={classes.card} key={task.id}>
-      <CoreUI.CardContent>
+    <CoreUI.Card key={task.id} className={classes.card}>
+      <CoreUI.CardContent className={classes.cardContent}>
         <CoreUI.Grid container justify="space-between">
           <CoreUI.Grid item md={8}>
             <CoreUI.Typography component="h2">{task.title}</CoreUI.Typography>

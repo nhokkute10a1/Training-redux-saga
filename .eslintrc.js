@@ -25,6 +25,9 @@ module.exports = {
     'no-use-before-define': ['off'],
     'no-use-before-define': ['off'],
     'no-param-reassign': ['off'],
+    'import/prefer-default-export': ['off'],
+    'react/require-default-props': ['off'],
+    'react/forbid-prop-types': ['off'],
   },
   plugins: ['prettier'],
   env: {
