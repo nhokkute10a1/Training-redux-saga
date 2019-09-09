@@ -52,7 +52,7 @@
     "**/*.{js,css}": [
       "eslint src",
       "npm run format",
-      "git add ."
+      "git add"
     ]
   }
 }
