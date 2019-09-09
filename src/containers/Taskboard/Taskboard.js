@@ -31,7 +31,7 @@ function Taskboard(props) {
     const { taskActionCreator } = props;
     const { fetchListTaskRequest } = taskActionCreator;
     fetchListTaskRequest();
-  });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -57,6 +57,7 @@ function Taskboard(props) {
       >
         Add New Task
       </CoreUI.Button>
+
       <CoreUI.Grid container spacing={1}>
         {STATUS.map(status => {
           const taskFiltered = listTask.filter(task => {

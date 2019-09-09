@@ -29,11 +29,11 @@ export const fetchListTaskError = error => {
  */
 export const fetchListTaskRequest = () => {
   return dispatch => {
+    dispatch(fetchListTask());
     taskApis
       .getList()
       .then(res => {
-        const { data } = res;
-        dispatch(fetchListTaskSuccess(data));
+        dispatch(fetchListTaskSuccess(res.data));
       })
       .catch(error => {
         dispatch(fetchListTaskError(error));
