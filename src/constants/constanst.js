@@ -14,3 +14,9 @@ export const STATUS = [
     label: 'COMPLETED',
   },
 ];
+
+export const STATUS_CODE = {
+  SUSSCESS: 200,
+  CREATE: 201,
+  UPDATE: 202,
+};

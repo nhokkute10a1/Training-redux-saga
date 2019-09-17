@@ -27,16 +27,16 @@ export const fetchListTaskError = error => {
  * B3: dispatch action fetchListTaskSuccess (data response)
  * B4:
  */
-export const fetchListTaskRequest = () => {
-  return dispatch => {
-    dispatch(fetchListTask());
-    taskApis
-      .getList()
-      .then(res => {
-        dispatch(fetchListTaskSuccess(res.data));
-      })
-      .catch(error => {
-        dispatch(fetchListTaskError(error));
-      });
-  };
-};
+// export const fetchListTaskRequest = () => {
+//   return dispatch => {
+//     dispatch(fetchListTask());
+//     taskApis
+//       .getList()
+//       .then(res => {
+//         dispatch(fetchListTaskSuccess(res.data));
+//       })
+//       .catch(error => {
+//         dispatch(fetchListTaskError(error));
+//       });
+//   };
+// };

@@ -28,6 +28,7 @@ module.exports = {
     'import/prefer-default-export': ['off'],
     'react/require-default-props': ['off'],
     'react/forbid-prop-types': ['off'],
+    'react/no-typos': ['off'],
   },
   plugins: ['prettier'],
   env: {

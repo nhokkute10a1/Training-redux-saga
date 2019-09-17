@@ -29,8 +29,8 @@ function Taskboard(props) {
 
   useEffect(() => {
     const { taskActionCreator } = props;
-    const { fetchListTaskRequest } = taskActionCreator;
-    fetchListTaskRequest();
+    const { fetchListTask } = taskActionCreator;
+    fetchListTask();
   }, []);
 
   return (

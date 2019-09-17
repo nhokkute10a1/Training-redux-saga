@@ -6,6 +6,7 @@ import styles from './App.styles';
 import Taskboard from '../Taskboard/Taskboard';
 import theme from '../../common/Theme/theme.styles';
 import configureStore from '../../redux/configureStore';
+import GlobalLoading from '../../components/GlobalLoading/globalLoad';
 
 const store = configureStore();
 
@@ -13,8 +14,9 @@ function App(props) {
   return (
     <Provider store={store}>
       <CoreUI.ThemeProvider theme={theme}>
-        <Taskboard />
         <ToastContainer />
+        <GlobalLoading />
+        <Taskboard />
       </CoreUI.ThemeProvider>
     </Provider>
   );
