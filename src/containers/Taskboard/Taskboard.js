@@ -9,6 +9,7 @@ import styles from './Taskboard.styles';
 import TaskList from '../../components/TaskList/TaskList';
 import TaskForm from '../../components/TaskForm/TaskForm';
 import * as taskActions from '../../actions/taskAction';
+import SearchBox from '../SearchBox/SearchBox';
 
 function Taskboard(props) {
   const { classes } = props;
@@ -32,6 +33,19 @@ function Taskboard(props) {
     const { fetchListTask } = taskActionCreator;
     fetchListTask();
   }, []);
+
+  const handleFilter = e => {
+    const { value } = e.target;
+    const { taskActionCreator } = props;
+    const { filterTask } = taskActionCreator;
+    filterTask(value);
+  };
+
+  const renderSearchBox = () => {
+    let xtml = null;
+    xtml = <SearchBox handleChange={handleFilter} />;
+    return xtml;
+  };
 
   return (
     <div className={classes.root}>
@@ -57,7 +71,7 @@ function Taskboard(props) {
       >
         Add New Task
       </CoreUI.Button>
-
+      {renderSearchBox()}
       <CoreUI.Grid container spacing={1}>
         {STATUS.map(status => {
           const taskFiltered = listTask.filter(task => {
@@ -82,6 +96,7 @@ Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreator: PropTypes.shape({
     fechListTask: PropTypes.func,
+    filterTask: PropTypes.func,
   }),
   listTask: PropTypes.array,
 };
